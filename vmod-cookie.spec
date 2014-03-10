@@ -1,7 +1,7 @@
 Summary: Cookie VMOD for Varnish %{VARNISHVER}
 Name: vmod-cookie
 Version: 0.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: BSD
 Group: System Environment/Daemons
 Source0: libvmod-cookie.tar.gz
@@ -18,6 +18,7 @@ Cookie VMOD for Varnish %{VARNISHSRC}.
 %build
 # this assumes that VARNISHSRC is defined on the rpmbuild command line, like this:
 # rpmbuild -bb --define 'VARNISHSRC /home/user/rpmbuild/BUILD/varnish-3.0.3' redhat/*spec
+./autogen.sh
 ./configure VARNISHSRC=%{VARNISHSRC} VMODDIR="$(PKG_CONFIG_PATH=%{VARNISHSRC} pkg-config --variable=vmoddir varnishapi)" --prefix=/usr/ --docdir='${datarootdir}/doc/%{name}'
 make
 make check
